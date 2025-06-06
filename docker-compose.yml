@@ -1,0 +1,66 @@
+#services:
+#  postgresql:
+#    image: postgres:15
+#    container_name: postgresql
+#    environment:
+#      POSTGRES_USER: postgres
+#      POSTGRES_PASSWORD: postgres
+#      POSTGRES_DB: maximed
+#    ports:
+#      - "5432:5432"
+#    networks:
+#      - backend
+#
+#  liquibase-migrations:
+#    container_name: migrations
+#    image: liquibase/liquibase:4.29
+#    depends_on:
+#      - postgresql
+#    command:
+#      - --searchPath=/changesets
+#      - --changelog-file=db-changelog.yml
+#      - --driver=org.postgresql.Driver
+#      - --url=jdbc:rc1a-puvrrwuayj0g6ex3.mdb.yandexcloud.net:6432/maximed
+#      - --username=user1
+#      - --password=yc9kLDC<)-,C,&vRY:xf'2"o<d"<C"01ee^Z
+#      - update
+#    volumes:
+#      - ./src/main/resources/migrations:/changesets
+#    networks:
+#      - backend
+
+services:
+  postgresql:
+    image: postgres:15
+    container_name: postgresql
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: maximed
+    ports:
+      - "5432:5432"
+    networks:
+      - backend
+
+  liquibase-migrations:
+    container_name: migrations
+    image: liquibase/liquibase:4.29
+    depends_on:
+      - postgresql
+    command:
+      - --searchPath=/changesets
+      - --changelog-file=db-changelog.yml
+      - --driver=org.postgresql.Driver
+      - --url=jdbc:postgresql://postgresql:5432/maximed
+      - --username=postgres
+      - --password=postgres
+      - update
+    volumes:
+      - ./src/main/resources/migrations:/changesets
+    networks:
+      - backend
+
+networks:
+  backend:
+    driver: bridge
+

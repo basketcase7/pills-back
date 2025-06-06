@@ -1,0 +1,8 @@
+databaseChangeLog:
+  - include:
+      file: "001-create-tables.sql"
+      relativeToChangelogFile: true
+
+  - include:
+      file: "002-create-tables-medic.sql"
+      relativeToChangelogFile: true
