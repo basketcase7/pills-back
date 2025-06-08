@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/api/user_pill")
 @RequiredArgsConstructor
 @CrossOrigin(
-        origins = {"http://192.168.0.101:5173", "http://localhost:5173"},
+        origins = {"http://192.168.0.101:5173", "http://localhost:5173", "http://89.169.169.19:5173"},
         methods = {RequestMethod.GET, RequestMethod.POST, RequestMethod.OPTIONS},
         allowedHeaders = "*",
         allowCredentials = "true")
